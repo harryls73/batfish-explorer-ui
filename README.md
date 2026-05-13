@@ -59,7 +59,7 @@ Once the application is running, use the slim dark sidebar on the left to naviga
 ```text
 d:\batfish\
 ├── backend/                  # Python API server
-│   └── main.py               # FastAPI entrypoint (reads configs)
+│   └── main.py               # Flask entrypoint (reads configs and serves UI)
 ├── batfish-ui/               # React Frontend
 │   ├── src/
 │   │   ├── components/       # Reusable UI components (Sidebar, Graph)
