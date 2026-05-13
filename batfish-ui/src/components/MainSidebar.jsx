@@ -5,7 +5,8 @@ import {
   ShieldAlert, 
   GitCompare, 
   CheckCircle, 
-  Activity 
+  Activity,
+  Settings
 } from 'lucide-react';
 
 export default function MainSidebar({ currentView, setCurrentView }) {
@@ -16,6 +17,7 @@ export default function MainSidebar({ currentView, setCurrentView }) {
     { id: 'acl-health', label: 'ACL Health', icon: ShieldAlert },
     { id: 'compliance', label: 'Compliance', icon: CheckCircle },
     { id: 'bgp-health', label: 'BGP Health', icon: Activity },
+    { id: 'settings', label: 'Settings', icon: Settings },
   ];
 
   return (

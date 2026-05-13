@@ -6,6 +6,7 @@ import TopologyMap from './views/TopologyMap';
 import AclHealth from './views/AclHealth';
 import Compliance from './views/Compliance';
 import BgpHealth from './views/BgpHealth';
+import Settings from './views/Settings';
 import PlaceholderView from './views/PlaceholderView';
 import './index.css';
 
@@ -26,6 +27,8 @@ export default function App() {
         return <Compliance />;
       case 'bgp-health':
         return <BgpHealth />;
+      case 'settings':
+        return <Settings />;
       default:
         return <PathTracer />;
     }
