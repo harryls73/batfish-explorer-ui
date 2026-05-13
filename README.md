@@ -17,7 +17,6 @@ The project is split into two lightweight services:
 ## 🛠️ Prerequisites
 
 Before you begin, ensure you have the following installed on your machine:
-*   **Node.js** (v18+ recommended) & npm
 *   **Python** (3.8+)
 *   *(Optional)* Java 11+ or Docker (if you want to run the actual Batfish engine in the future)
 
@@ -25,12 +24,9 @@ Before you begin, ensure you have the following installed on your machine:
 
 ## 🚀 Setup & Execution
 
-You will need two terminal windows open to run the application locally.
+The React frontend has already been compiled into static files, meaning you do **not** need Node.js to run this application! The Python Flask backend serves both the API and the UI.
 
-### 1. Start the Python Backend
-The backend serves the dynamic topology data parsed from the `sample_networks`.
-
-Open your first terminal and run:
+Open your terminal and run:
 ```bash
 # Navigate to the backend directory
 cd d:\batfish\backend
@@ -41,23 +37,7 @@ pip install flask flask-cors
 # Start the Flask server
 python main.py
 ```
-*The backend should now be running on `http://localhost:8000`.*
-
-### 2. Start the React Frontend
-The frontend contains all the interactive dashboards and graphing logic.
-
-Open your second terminal and run:
-```bash
-# Navigate to the frontend directory
-cd d:\batfish\batfish-ui
-
-# Install the Node dependencies
-npm install
-
-# Start the Vite development server
-npm run dev
-```
-*The frontend should now be running on `http://localhost:5173`. Open this link in your browser!*
+*The entire application (UI and API) is now running! Open your browser to `http://localhost:8000`.*
 
 ---
 

@@ -1,13 +1,24 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 import os
 import glob
 
-app = Flask(__name__)
-# Allow CORS for the React UI
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}})
+# Set the path to the compiled React build folder
+DIST_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "batfish-ui", "dist"))
+
+app = Flask(__name__, static_folder=DIST_DIR, static_url_path="/")
+CORS(app)
 
 CONFIGS_DIR = r"d:\batfish\sample_networks\example\configs"
+
+# Serve the React application
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve(path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, "index.html")
 
 @app.route("/api/topology", methods=["GET"])
 def get_topology():

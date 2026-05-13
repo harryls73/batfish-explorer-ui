@@ -70,7 +70,7 @@ export default function TopologyMap() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/topology');
+        const response = await fetch('/api/topology');
         const data = await response.json();
         
         // Add types and styles
