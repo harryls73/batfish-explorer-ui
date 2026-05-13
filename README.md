@@ -10,7 +10,7 @@ This prototype provides an intuitive, glassmorphism-styled dashboard to interact
 
 The project is split into two lightweight services:
 1. **Frontend (`batfish-ui`)**: A React 19 application built with Vite, utilizing `reactflow` for interactive network topology graphs, `dagre` for anti-hairball hierarchical layouts, and `lucide-react` for iconography.
-2. **Backend (`backend`)**: A Python FastAPI server that parses network configurations (or talks to `pybatfish`) and serves JSON topology data to the frontend.
+2. **Backend (`backend`)**: A Python Flask server that parses network configurations (or talks to `pybatfish`) and serves JSON topology data to the frontend.
 
 ---
 
@@ -36,9 +36,9 @@ Open your first terminal and run:
 cd d:\batfish\backend
 
 # Install the required Python packages
-pip install fastapi uvicorn
+pip install flask flask-cors
 
-# Start the FastAPI server
+# Start the Flask server
 python main.py
 ```
 *The backend should now be running on `http://localhost:8000`.*

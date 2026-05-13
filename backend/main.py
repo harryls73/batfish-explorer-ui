@@ -1,22 +1,15 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from flask import Flask, jsonify
+from flask_cors import CORS
 import os
 import glob
 
-app = FastAPI()
-
+app = Flask(__name__)
 # Allow CORS for the React UI
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}})
 
 CONFIGS_DIR = r"d:\batfish\sample_networks\example\configs"
 
-@app.get("/api/topology")
+@app.route("/api/topology", methods=["GET"])
 def get_topology():
     # Simulate a Batfish parse of the network configurations
     nodes = []
@@ -44,9 +37,6 @@ def get_topology():
         })
         
     # 2. Simulate Batfish computing the edges/topology
-    # For a real backend, we would use pybatfish: bf.q.layer3Edges().answer().frame()
-    # Here we'll just mock some connections based on AS numbers to form a cohesive graph
-    
     edges = [
         {"id": "e-as1c1-as1b1", "source": "as1core1", "target": "as1border1"},
         {"id": "e-as1c1-as1b2", "source": "as1core1", "target": "as1border2"},
@@ -62,8 +52,7 @@ def get_topology():
         {"id": "e-as1b2-as3b2", "source": "as1border2", "target": "as3border2"},
     ]
 
-    return {"nodes": nodes, "edges": edges}
+    return jsonify({"nodes": nodes, "edges": edges})
 
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    app.run(host="0.0.0.0", port=8000, debug=True)
